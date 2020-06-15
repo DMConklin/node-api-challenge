@@ -1,16 +1,10 @@
 const express = require("express")
 const router = express.Router()
 const projects = require('../data/helpers/projectModel')
-const mappers = require('../data/helpers/mappers')
 
-router.get('/projects/:id', (req,res) => {
+router.get('/projects/:id', checkProjectId(), (req,res) => {
     projects.get(req.params.id)
         .then(project => {
-            if (!project) {
-                return res.status(404).json({
-                    message: "The project does not exis"
-                })
-            }
             res.json(project)
         })
         .catch(err => {
