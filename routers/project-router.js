@@ -28,7 +28,7 @@ router.get('/projects/:id/actions', checkProjectId(), async (req,res) => {
 
 router.post('/projects', checkRequestBody(), async (req,res) => {
     try {
-        const newProject = projects.insert(req.body)
+        const newProject = await projects.insert(req.body)
         res.json(newProject)
     } catch(err) {
         console.log(err)
